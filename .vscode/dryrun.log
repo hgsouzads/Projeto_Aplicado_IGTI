@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/hgsouza/Documents/Repositorios/Projeto_Aplicado_IGTI'
+docker-compose -f ./CI/docker-compose.yml run --rm rony-ci ./CI/scripts/format.sh
+make: Leaving directory `/Users/hgsouza/Documents/Repositorios/Projeto_Aplicado_IGTI'
+ 
