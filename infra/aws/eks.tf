@@ -15,20 +15,25 @@ module "eks" {
   workers_group_defaults = {
     root_volume_type = "gp2"
   }
-
+  worker_groups_launch_template = [
+    {
+      name                    = "worker-group-spot-1"
+      override_instance_types = var.spot_instance_types
+      spot_allocation_strategy = "lowest-price"
+      asg_max_size            = var.spot_max_size
+      asg_desired_capacity    = var.spot_desired_size
+      kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
+    },
+  ]
   worker_groups = [
     {
       name                          = "worker-group-1"
-      instance_type                 = "m5.xlarge"
+      instance_type                 = var.ondemand_instance_type
+      additional_userdata           = "echo foo bar"
+      asg_desired_capacity          = var.ondemand_desired_size
+      kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=ondemand"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
-      asg_desired_capacity          = 2
-    },
-    {
-      name                          = "worker-group-2"
-      instance_type                 = "m5.xlarge"
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 2
-    },
+    }
   ]
 }
 
