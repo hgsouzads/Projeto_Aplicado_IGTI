@@ -23,7 +23,7 @@ def trigger_crawler_final_func():
 
 
 with DAG(
-    'enem_batch_spark_k8s',
+    'batch_spark_k8s',
     default_args={
         'owner': 'Hugo',
         'depends_on_past': False,
