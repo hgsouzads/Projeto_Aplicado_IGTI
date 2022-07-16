@@ -23,7 +23,7 @@ def trigger_crawler_final_func():
 
 
 with DAG(
-    'batch_spark_k8s',
+    'pipeline_dados_TaxiGov',
     default_args={
         'owner': 'Hugo',
         'depends_on_past': False,
