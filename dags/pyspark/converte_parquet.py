@@ -26,7 +26,7 @@ if __name__ == "__main__":
         spark
         .read
         .format("csv")
-        .options(header=True, inferSchema=True, delimiter="|", encoding="latin1")
+        .options(header=True, inferSchema=True, delimiter=",", encoding="latin1")
         .load("s3://dl-langing-zone-809571664566")
     )
 
