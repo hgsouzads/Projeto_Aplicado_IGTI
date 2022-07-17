@@ -27,12 +27,12 @@ if __name__ == "__main__":
         .read
         .format("csv")
         .options(header=True, inferSchema=True, delimiter=",", encoding="latin1")
-        .load("s3://dl-langing-zone-809571664566")
+        .load("s3://dl-langing-zone-809571664566/")
     )
 
     print("Escrita dos dados...")
     (
         df
         .write
-        .parquet("s3://dl-processing-zone-809571664566", mode="overwrite")
+        .parquet("s3://dl-processing-zone-809571664566/", mode="overwrite")
     )
